@@ -71,7 +71,81 @@ d.rich('Hello {{name}}, click {{action}}', {
 }) // "Hello John, click <button>action</button>"
 ```
 
-### 5. Email Templates
+### 5. MJML Email Templates
+
+```javascript
+// Basic MJML text processing
+d.mjml('<mj-text>Hello {name}!</mj-text>', { name: 'Jane' })
+// "<mj-text>Hello Jane!</mj-text>"
+
+// MJML with attributes
+d.mjml('<mj-button href="{url}">Click here</mj-button>', { url: 'https://example.com' })
+// "<mj-button href="https://example.com">Click here</mj-button>"
+
+// Complex MJML email template
+const mjmlTemplate = `
+  <mjml>
+    <mj-head>
+      <mj-title>{emailTitle}</mj-title>
+    </mj-head>
+    <mj-body>
+      <mj-section>
+        <mj-column>
+          <mj-text font-size="16px" color="{textColor}">
+            Hello {user.name}!
+          </mj-text>
+          <mj-text>
+            Welcome to {company.name}. Your order #{order.id} has been confirmed.
+          </mj-text>
+          <mj-button href="{order.trackingUrl}" background-color="{buttonColor}">
+            Track Your Order
+          </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-body>
+  </mjml>
+`;
+
+const emailData = {
+  emailTitle: 'Order Confirmation',
+  textColor: '#333333',
+  user: { name: 'John Smith' },
+  company: { name: 'MyStore' },
+  order: { 
+    id: '12345', 
+    trackingUrl: 'https://mystore.com/track/12345' 
+  },
+  buttonColor: '#007bff'
+};
+
+d.mjml(mjmlTemplate, emailData)
+// Complete MJML with all variables replaced
+
+// MJML with custom variable format
+d.mjml('<mj-text>Hello [[name]]!</mj-text>', 
+  { name: 'Jane' }, 
+  { variableFormat: { start: '[[', end: ']]' } }
+)
+// "<mj-text>Hello Jane!</mj-text>"
+
+// MJML with nested object properties
+const userData = {
+  user: {
+    profile: {
+      name: 'Alice',
+      location: { city: 'New York' }
+    }
+  }
+};
+
+d.mjml(
+  '<mj-text>Welcome {user.profile.name} from {user.profile.location.city}!</mj-text>', 
+  userData
+)
+// "<mj-text>Welcome Alice from New York!</mj-text>"
+```
+
+### 6. Legacy Email Templates
 
 ```javascript
 // Using recipient object (backward compatibility)
@@ -99,7 +173,7 @@ const emailTemplate = `
 d(emailTemplate, { recipient })
 ```
 
-### 6. Complex Nested Structures
+### 7. Complex Nested Structures
 
 ```javascript
 const orderData = {

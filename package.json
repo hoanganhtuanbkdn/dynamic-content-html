@@ -1,6 +1,6 @@
 {
   "name": "dynamic-content-html",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A dynamic text processing library for template interpolation with rich content support",
   "type": "module",
   "main": "dist/index.js",
@@ -27,6 +27,10 @@
     "dynamic-content-email",
     "i18n",
     "email",
+    "mjml",
+    "mjml-email",
+    "email-template",
+    "email-builder",
     "react",
     "vue",
     "nodejs"
@@ -63,12 +67,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/dynamic-content-html.git"
+    "url": "git+https://github.com/hoanganhtuanbkdn/dynamic-content-html.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/dynamic-content-html/issues"
+    "url": "https://github.com/hoanganhtuanbkdn/dynamic-content-html/issues"
   },
-  "homepage": "https://github.com/yourusername/dynamic-content-html#readme",
+  "homepage": "https://github.com/hoanganhtuanbkdn/dynamic-content-html#readme",
   "dependencies": {
     "tslib": "^2.8.1"
   },

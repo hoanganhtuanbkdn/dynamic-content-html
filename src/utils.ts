@@ -1,4 +1,4 @@
-import { DynamicTextOptions, DynamicTextConfig } from './types';
+import { DynamicTextOptions, DynamicTextConfig, MJMLOptions, MJMLConfig } from './types';
 
 /**
  * Default variable format
@@ -102,6 +102,97 @@ export function processRichContent(
 
   // Then replace all remaining variables
   result = replaceVariables(result, options, config);
+
+  return result;
+}
+
+/**
+ * Process MJML content with dynamic data
+ * Handles both MJML attributes and text content
+ */
+export function processMJML(template: string, options: MJMLOptions = {}, config?: MJMLConfig): string {
+  if (!template || typeof template !== 'string') {
+    return '';
+  }
+
+  const mjmlConfig = {
+    mjmlAttributes: true,
+    mjmlTextContent: true,
+    ...config
+  };
+
+  let result = template;
+
+  // Process MJML attributes if enabled
+  if (mjmlConfig.mjmlAttributes) {
+    result = processMJMLAttributes(result, options, config);
+  }
+
+  // Process MJML text content if enabled
+  if (mjmlConfig.mjmlTextContent) {
+    result = processMJMLTextContent(result, options, config);
+  }
+
+  return result;
+}
+
+/**
+ * Process MJML attributes with dynamic data
+ */
+function processMJMLAttributes(template: string, options: MJMLOptions, config?: MJMLConfig): string {
+  let result = template;
+  const format = config?.variableFormat || DEFAULT_VARIABLE_FORMAT;
+  const start = format.start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const end = format.end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  // Match MJML tags with attributes containing variables
+  const mjmlTagRegex = /<mj-[^>]*>/g;
+  
+  result = result.replace(mjmlTagRegex, (match) => {
+    let processedMatch = match;
+    
+    // Process each attribute in the MJML tag
+    const attributeRegex = new RegExp(`(\\w+)=["']([^"']*${start}[^"']*${end}[^"']*)["']`, 'g');
+    
+    processedMatch = processedMatch.replace(attributeRegex, (attrMatch, attrName, attrValue) => {
+      const processedValue = replaceVariables(attrValue, options, config);
+      return `${attrName}="${processedValue}"`;
+    });
+    
+    return processedMatch;
+  });
+
+  return result;
+}
+
+/**
+ * Process MJML text content with dynamic data
+ */
+function processMJMLTextContent(template: string, options: MJMLOptions, config?: MJMLConfig): string {
+  let result = template;
+  const format = config?.variableFormat || DEFAULT_VARIABLE_FORMAT;
+  const start = format.start.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const end = format.end.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  // Match text content between MJML tags
+  const textContentRegex = new RegExp(`(<mj-[^>]*>)([^<]*${start}[^<]*${end}[^<]*)(</mj-[^>]*>)`, 'g');
+  
+  result = result.replace(textContentRegex, (match, openTag, textContent, closeTag) => {
+    const processedTextContent = replaceVariables(textContent, options, config);
+    return `${openTag}${processedTextContent}${closeTag}`;
+  });
+
+  // Also handle text content that might be between multiple MJML tags
+  const multiLineTextRegex = new RegExp(`(<mj-[^>]*>)([\\s\\S]*?)(</mj-[^>]*>)`, 'g');
+  
+  result = result.replace(multiLineTextRegex, (match, openTag, textContent, closeTag) => {
+    // Only process if the text content contains variables
+    if (new RegExp(`${start}[^${end}]+${end}`).test(textContent)) {
+      const processedTextContent = replaceVariables(textContent, options, config);
+      return `${openTag}${processedTextContent}${closeTag}`;
+    }
+    return match;
+  });
 
   return result;
 }

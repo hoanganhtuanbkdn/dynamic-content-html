@@ -177,6 +177,85 @@ const emailTemplate = d.rich('Click [[button]] to continue', {
 }, { variableFormat: { start: '[[', end: ']]' } });
 ```
 
+### MJML Support
+
+```javascript
+import d from 'dynamic-content-html';
+
+// Basic MJML text content processing
+const mjmlText = d.mjml('<mj-text>Hello {name}!</mj-text>', { name: 'Jane' });
+console.log(mjmlText); // "<mj-text>Hello Jane!</mj-text>"
+
+// MJML with attributes
+const mjmlButton = d.mjml('<mj-button href="{url}">Click here</mj-button>', { 
+  url: 'https://example.com' 
+});
+console.log(mjmlButton); // "<mj-button href="https://example.com">Click here</mj-button>"
+
+// Complex MJML email template
+const emailTemplate = `
+  <mjml>
+    <mj-head>
+      <mj-title>{emailTitle}</mj-title>
+    </mj-head>
+    <mj-body>
+      <mj-section>
+        <mj-column>
+          <mj-text font-size="16px" color="{textColor}">
+            Hello {user.name}!
+          </mj-text>
+          <mj-text>
+            Welcome to {company.name}. Your order #{order.id} has been confirmed.
+          </mj-text>
+          <mj-button href="{order.trackingUrl}" background-color="{buttonColor}">
+            Track Your Order
+          </mj-button>
+        </mj-column>
+      </mj-section>
+    </mj-body>
+  </mjml>
+`;
+
+const data = {
+  emailTitle: 'Order Confirmation',
+  textColor: '#333333',
+  user: { name: 'John Smith' },
+  company: { name: 'MyStore' },
+  order: { 
+    id: '12345', 
+    trackingUrl: 'https://mystore.com/track/12345' 
+  },
+  buttonColor: '#007bff'
+};
+
+const processedEmail = d.mjml(emailTemplate, data);
+console.log(processedEmail);
+// Output: Complete MJML with all variables replaced
+
+// MJML with custom variable format
+const customMjml = d.mjml('<mj-text>Hello [[name]]!</mj-text>', 
+  { name: 'Jane' }, 
+  { variableFormat: { start: '[[', end: ']]' } }
+);
+console.log(customMjml); // "<mj-text>Hello Jane!</mj-text>"
+
+// MJML with nested object properties
+const userData = {
+  user: {
+    profile: {
+      name: 'Alice',
+      location: { city: 'New York' }
+    }
+  }
+};
+
+const nestedMjml = d.mjml(
+  '<mj-text>Welcome {user.profile.name} from {user.profile.location.city}!</mj-text>', 
+  userData
+);
+console.log(nestedMjml); // "<mj-text>Welcome Alice from New York!</mj-text>"
+```
+
 ## API Reference
 
 ### `d(template, options)`
@@ -211,6 +290,26 @@ d.rich('Click {{link}}', {
 }) // "Click <a href="/test">link</a>"
 ```
 
+### `d.mjml(template, options, config)`
+
+Processes MJML content with dynamic data, handling both MJML attributes and text content.
+
+**Parameters:**
+- `template` (string): MJML template string with variable placeholders
+- `options` (MJMLOptions): Object containing variable values
+- `config` (MJMLConfig, optional): Configuration for variable format and MJML processing
+
+**Returns:** Processed MJML string with variables replaced
+
+**Example:**
+```javascript
+d.mjml('<mj-text>Hello {name}!</mj-text>', { name: 'Jane' })
+// "<mj-text>Hello Jane!</mj-text>"
+
+d.mjml('<mj-button href="{url}">Click here</mj-button>', { url: 'https://example.com' })
+// "<mj-button href="https://example.com">Click here</mj-button>"
+```
+
 ## Types
 
 ### Recipient Object
@@ -234,7 +333,7 @@ interface Recipient {
 ### TypeScript Support
 
 ```typescript
-import d, { Recipient, DynamicTextOptions, RichTextOptions } from 'dynamic-content-html';
+import d, { Recipient, DynamicTextOptions, RichTextOptions, MJMLOptions, MJMLConfig } from 'dynamic-content-html';
 
 const recipient: Recipient = {
   first_name: 'John',

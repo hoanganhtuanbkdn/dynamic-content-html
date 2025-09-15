@@ -1,0 +1,12 @@
+{
+  "name": "mjml-example",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dynamic-content-html": "file:../../",
+    "mjml": "^4.15.3"
+  }
+}

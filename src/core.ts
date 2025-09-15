@@ -1,5 +1,5 @@
-import { DynamicTextOptions, RichTextOptions, RichContentFunction, DynamicTextConfig } from './types';
-import { replaceVariables, processRichContent } from './utils';
+import { DynamicTextOptions, RichTextOptions, RichContentFunction, DynamicTextConfig, MJMLOptions, MJMLConfig } from './types';
+import { replaceVariables, processRichContent, processMJML } from './utils';
 
 /**
  * Main dynamic text function - similar to i18n t() function
@@ -57,7 +57,27 @@ export function rich(template: string, options: RichTextOptions = {}, config?: D
   return processRichContent(template, regularOptions, richFunctions, config);
 }
 
-// Attach rich function to main d function
+/**
+ * MJML function - processes MJML content with dynamic data
+ * @param template - MJML template string with variable placeholders
+ * @param options - Object containing variable values
+ * @param config - Optional configuration for variable format and MJML processing
+ * @returns Processed MJML string with variables replaced
+ * 
+ * @example
+ * d.mjml('<mj-text>Hello {name}!</mj-text>', { name: 'Jane' })
+ * d.mjml('<mj-button href="{url}">Click here</mj-button>', { url: 'https://example.com' })
+ */
+export function mjml(template: string, options: MJMLOptions = {}, config?: MJMLConfig): string {
+  if (!template || typeof template !== 'string') {
+    return '';
+  }
+
+  return processMJML(template, options, config);
+}
+
+// Attach rich and mjml functions to main d function
 d.rich = rich;
+d.mjml = mjml;
 
 export default d;
