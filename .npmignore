@@ -1,0 +1,13 @@
+src/
+examples/
+*.test.ts
+*.spec.ts
+coverage/
+node_modules/
+.git/
+.gitignore
+jest.config.js
+rollup.config.js
+tsconfig.json
+*.log
+.DS_Store
