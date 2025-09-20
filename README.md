@@ -1,6 +1,6 @@
-# Dynamic Text
+# Dynamic Content Html
 
-A powerful and lightweight utility library for dynamic text processing with template interpolation and rich content support. Designed specifically for **translation libraries**, **i18n frameworks**, and **dynamic email systems**. Perfect for email editors like **Unlayer**, **GrapesJS**, **Canva**, and any scenario where you need flexible text processing.
+A powerful and lightweight utility library for Dynamic Content Html processing with template interpolation and rich content support. Designed specifically for **translation libraries**, **i18n frameworks**, and **dynamic email systems**. Perfect for email editors like **Unlayer**, **GrapesJS**, **Canva**, and any scenario where you need flexible text processing.
 
 ## 🎯 Purpose & Use Cases
 
@@ -18,7 +18,7 @@ A powerful and lightweight utility library for dynamic text processing with temp
 
 ### For Email Editors & Builders
 - **Unlayer integration** - Process dynamic content in email templates
-- **GrapesJS support** - Handle dynamic text in visual email builders
+- **GrapesJS support** - Handle Dynamic Content Html in visual email builders
 - **Canva compatibility** - Process dynamic content in design tools
 - **Custom format support** - Match any email platform's variable syntax
 
@@ -705,7 +705,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - TypeScript support
 - Comprehensive test coverage
 
-## Why Choose Dynamic Text?
+## Why Choose Dynamic Content Html?
 
 ### 🎯 **Perfect for Translation Libraries**
 - **Drop-in replacement** for existing i18n interpolation
@@ -775,7 +775,7 @@ Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 ---
 
-**Dynamic Text** - The ultimate utility for translation libraries and dynamic email systems! 🚀
+**Dynamic Content Html** - The ultimate utility for translation libraries and dynamic email systems! 🚀
 
 Made with ❤️ for developers who need flexible text processing
 # dynamic-content-html

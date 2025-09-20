@@ -138,7 +138,7 @@ app.get('/', (req, res) => {
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Dynamic Text - Node.js Example</title>
+        <title>Dynamic Content Html - Node.js Example</title>
         <style>
             body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
             .endpoint { background-color: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 5px; }
@@ -147,7 +147,7 @@ app.get('/', (req, res) => {
         </style>
     </head>
     <body>
-        <h1>Dynamic Text - Node.js Example</h1>
+        <h1>Dynamic Content Html - Node.js Example</h1>
         <p>This server demonstrates how to use the dynamic-content-html library in a Node.js environment.</p>
         
         <h2>Available Endpoints:</h2>
@@ -291,7 +291,7 @@ app.post('/api/templates/rich', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📧 Dynamic Text Node.js Example`);
+  console.log(`📧 Dynamic Content Html Node.js Example`);
   console.log(`\nAvailable endpoints:`);
   console.log(`  GET  /api/templates/welcome`);
   console.log(`  POST /api/templates/welcome`);

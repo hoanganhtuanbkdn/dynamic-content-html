@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1>Dynamic Text - Vue Example</h1>
+    <h1>Dynamic Content Html - Vue Example</h1>
     
     <div class="controls">
       <h2>Edit Recipient Information:</h2>

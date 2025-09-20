@@ -2,7 +2,7 @@ import { DynamicTextOptions, RichTextOptions, RichContentFunction, DynamicTextCo
 import { replaceVariables, processRichContent, processMJML } from './utils';
 
 /**
- * Main dynamic text function - similar to i18n t() function
+ * Main Dynamic Content Html function - similar to i18n t() function
  * @param template - Template string with variable placeholders
  * @param options - Object containing variable values
  * @param config - Optional configuration for variable format

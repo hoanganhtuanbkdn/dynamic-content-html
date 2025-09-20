@@ -1,7 +1,7 @@
 {
   "name": "dynamic-content-html",
-  "version": "1.0.3",
-  "description": "A dynamic text processing library for template interpolation with rich content support",
+  "version": "1.0.5",
+  "description": "A dynamic content html processing library for template interpolation with rich content support",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -31,6 +31,8 @@
     "mjml-email",
     "email-template",
     "email-builder",
+    "code4change",
+    "luck4you",
     "react",
     "vue",
     "nodejs"

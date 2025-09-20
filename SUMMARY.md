@@ -1,8 +1,8 @@
-# Dynamic Text Library - Summary
+# Dynamic Content Html Library - Summary
 
-## 🎯 What is Dynamic Text?
+## 🎯 What is Dynamic Content Html?
 
-Dynamic Text is a powerful and flexible JavaScript library for processing dynamic text content with template interpolation. It's designed to handle various use cases from simple variable replacement to complex nested object processing and rich content generation.
+Dynamic Content Html is a powerful and flexible JavaScript library for processing Dynamic Content Html content with template interpolation. It's designed to handle various use cases from simple variable replacement to complex nested object processing and rich content generation.
 
 ## ✨ Key Features
 
@@ -138,7 +138,7 @@ d(messages.welcome, { name: 'John' })
 - **options**: Object with variables and rich content functions
 - **returns**: Processed string with rich content applied
 
-## 🌟 Why Choose Dynamic Text?
+## 🌟 Why Choose Dynamic Content Html?
 
 1. **Flexibility**: Handles any object structure, not just predefined schemas
 2. **Performance**: Lightweight and fast processing
@@ -178,4 +178,4 @@ MIT License - Free to use in commercial and personal projects.
 
 ---
 
-**Dynamic Text** - Making dynamic text processing simple, flexible, and powerful! 🚀
+**Dynamic Content Html** - Making Dynamic Content Html processing simple, flexible, and powerful! 🚀

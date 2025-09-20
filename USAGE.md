@@ -1,4 +1,4 @@
-# Dynamic Text - Usage Guide
+# Dynamic Content Html - Usage Guide
 
 ## Quick Examples
 

@@ -79,7 +79,7 @@ const App: React.FC = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h1>Dynamic Text - React Example</h1>
+      <h1>Dynamic Content Html - React Example</h1>
       
       <div style={{ marginBottom: '20px' }}>
         <h2>Edit Recipient Information:</h2>
